@@ -15,20 +15,14 @@ private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var backupManager:BackupManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initBackupManager()
         initListener()
         backupString()
-    }
-
-    private fun initBackupManager() {
-        //BackupManager(this).dataChanged()
     }
 
     private fun initListener() {
@@ -41,8 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun backupString() {
         val savedString = getPref()?.getString(KEY_PREF_STRING,null)
-        Log.e(TAG,"getPref()? ${getPref()}")
-        Log.e(TAG,"savedString $savedString")
+        Log.d(TAG,"savedString $savedString")
         savedString?.let {
             binding.tvString.text = it
         }
